@@ -1,8 +1,9 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def new
   end
 
   def create
+   flash[:notice] = "successfully"
   end
 
   def index
