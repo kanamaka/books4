@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <link rel="stylesheet" href="bookers2/app/assets/stylesheets/users.scss">
+ <script src="https://kit.fontawesome.com/34c9407723.js" crossorigin="anonymous"></script>
+</head>
 <main class="user">
      <p>
      <% if flash[:notice] %>
@@ -5,3 +12,54 @@
        <%= flash[:notice] %>
      </p>
     <% end %>
+    <div class="container">
+     <div class="row">
+      <div class="col-lg-8">
+         <h2>
+           User info
+         </h2>
+         <div class="userimg" src="assets/images/bou.jpg"></div>
+         <table class="table">
+            <tbody>
+                 <tr></tr>
+                 <th>
+                   name
+                 </th>
+                 <th>
+                 </th>
+                 <tr></tr>
+                 <th>
+                   introduction
+                 </th>
+                 <th>
+
+                 </th>
+            </tbody>
+         </table>
+         <div class="edit">
+            <button type="button" class="btn btn-outline-secondary btn-block">
+            <i class="fas fa-user-cog"></i>
+　　　　　　</button>
+　　　　　　<h2>
+　　　　　　  New book
+　　　　　　</h2>
+　　　　　　<td class="form">
+　　　　　　<%= form_with model:@user, local:true do |f| %>
+　　　　　　<p4>Title</p4><br>
+　　　　　　  <%= f.text_field :Title %><br>
+　　　　　　<p4>Opinion</p4><br>
+　　　　　　  <%= f.text_field :Opinion %>
+　　　　　　  <%= link_to "Create Book", books_path, class: "btn btn-lg btn-success", method: :get %>
+　　　　　　<% end %>
+　　　　　　</td>
+　　　　　　</div>
+         </div>
+         <div class="col-lg-4">
+           <ユーザー一覧>
+              </tr>
+            </tbody>
+           </table>
+         </div>
+      </div>
+    </div>
+    </html>

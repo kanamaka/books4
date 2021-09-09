@@ -22,12 +22,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li>
+           <% if user_signed_in? %>
+           <li>
            <i class="fas fa-home">
-            <%= link_to "Home", root_path %>
+            <%= link_to "Home", user_path(current_user.id) %>
            </i>
           </li>
-           <% if user_signed_in? %>
            <li>
              <i class="fas fa-sign-out-alt">
               <%= link_to "logout" , destroy_user_session_path, method: :delete %>
@@ -35,7 +35,7 @@
            </li>
            <li>
              <i class="fas fa-users">
-              <%= link_to "Users", user_session_path  %>
+              <%= link_to "Users", user_session_path %>
              </i>
            </li>
            <li>
@@ -44,6 +44,11 @@
              </i>
            </li>
            <% else %>
+           <li>
+           <i class="fas fa-home">
+            <%= link_to "Home", root_path %>
+           </i>
+          </li>
           <li>
             <i class="fas fa-link">
              <%= link_to "About", homes_about_path %>

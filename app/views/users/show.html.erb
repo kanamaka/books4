@@ -44,7 +44,7 @@
 　　　　　　  New book
 　　　　　　</h2>
 　　　　　　<td class="form">
-　　　　　　<%= form_with model:@book, local:true do |f| %>
+　　　　　　<%= form_with model:@user, local:true do |f| %>
 　　　　　　<p4>Title</p4><br>
 　　　　　　  <%= f.text_field :Title %><br>
 　　　　　　<p4>Opinion</p4><br>
@@ -55,31 +55,9 @@
 　　　　　　</div>
          </div>
          <div class="col-lg-4">
-           <h2>Book detail</h2>
+           <h2>Books</h2>
            <table class="table">
-            <thead>
-             <th>
-              Title
-             </th>
-             <th>
-              Opinion
-             </th>
-            </thead>
-            <tbody>
-              <% @books.each do |book| %>
-              <tr>
-                <td>
-                 <%= attachment_image_tag book.user, :image %>
-                 </td>
-                 <td>
-                 <%= book.title %>
-                 </td>
-                 <td>
-                 <%= book.body %>
-                 </td>
-              </tr>
-              <% end %>
-            </tbody>
+           
            </table>
          </div>
       </div>
