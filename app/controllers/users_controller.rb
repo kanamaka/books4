@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @book = Book.new
     @users = User.all
   end
 
@@ -21,8 +22,11 @@ class UsersController < ApplicationController
 
   def destroy
   end
+  
+  def edit
+  end
   private
   def user_params
-    params.require(user).permit(:Title, :Opinion)
+    params.require(:user).permit(:name, :introduction)
   end
 end

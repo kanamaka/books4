@@ -14,51 +14,69 @@
     <% end %>
     <div class="container">
      <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-4">
          <h2>
            User info
          </h2>
-         <div class="userimg" src="assets/images/bou.jpg"></div>
+          <%= image_tag 'bou.jpg', class: 'icon' %>
          <table class="table">
             <tbody>
                  <tr></tr>
                  <th>
                    name
+                　 <%= current_user.name %>
                  </th>
                  <th>
                  </th>
                  <tr></tr>
                  <th>
                    introduction
+                   <%= current_user.introduction %>
                  </th>
                  <th>
-
                  </th>
             </tbody>
          </table>
          <div class="edit">
-            <button type="button" class="btn btn-outline-secondary btn-block">
-            <i class="fas fa-user-cog"></i>
-　　　　　　</button>
+          <a class="btn btn-outline-secondary btn-block fas fa-user-cog" href="/users/:id/edit">
+          </a>
+         </div>
 　　　　　　<h2>
 　　　　　　  New book
 　　　　　　</h2>
 　　　　　　<td class="form">
-　　　　　　<%= form_with model:@user, local:true do |f| %>
+　　　　　　<%= form_with model:@book, local:true do |f| %>
 　　　　　　<p4>Title</p4><br>
-　　　　　　  <%= f.text_field :Title %><br>
+　　　　　　  <%= f.text_field :title %><br>
 　　　　　　<p4>Opinion</p4><br>
-　　　　　　  <%= f.text_field :Opinion %>
-　　　　　　  <%= link_to "Create Book", books_path, class: "btn btn-lg btn-success", method: :get %>
+　　　　　　  <%= f.text_area :body %>
+　　　　　　  <%= button_to "Create book", {controller: 'users', action: 'new'}, {method: :post, class: "btn btn-lg btn-success"} %>
 　　　　　　<% end %>
 　　　　　　</td>
-　　　　　　</div>
          </div>
-         <div class="col-lg-4">
-           <ユーザー一覧>
+         <div class="col-lg-8">
+           <h2>
+             Users
+           </h2>
+           <table class="table">
+            <thead>
+             <th>
+              image
+             </th>
+             <th>
+              name
+             </th>
+            </thead>
+            <tbody>
+             <% @users.each do |user| %>
+              <tr>
+               <td>
+               </td>
+               <td>
+               </td>
               </tr>
+             <% end %>
             </tbody>
-           </table>
          </div>
       </div>
     </div>

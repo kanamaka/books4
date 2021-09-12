@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <link rel="stylesheet" href="bookers2/app/assets/stylesheets/users.scss">
+ <script src="https://kit.fontawesome.com/34c9407723.js" crossorigin="anonymous"></script>
+</head>
+<p></p>
+<h2 style="text-align:center">User info</h2>
+<%= form_with model: @users, local:true do |f| %>
+<td class="edit_form">
+ <label for="inputname">Name</label><br>
+ <%= f.text_field :name %><br>
+ <label for="inputimage">Image</label><br>
+ <input name="profile_image_id" type="file">
+ <br>
+  <label for="inputintroduction">Introduction</label><br>
+  <%= f.text_area :introduction %><br>
+ </td>
+ <td class="action">
+  <input type="submit" name="commit" value="Update User" class="btn btn-secondary" />
+ </td>
+<% end %>
+ </html>

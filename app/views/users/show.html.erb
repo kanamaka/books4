@@ -14,11 +14,11 @@
     <% end %>
     <div class="container">
      <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-4">
          <h2>
            User info
          </h2>
-         <div class="userimg" src="assets/images/bou.jpg"></div>
+         <%= image_tag 'bou.jpg', class: 'icon' %>
          <table class="table">
             <tbody>
                  <tr></tr>
@@ -37,27 +37,45 @@
             </tbody>
          </table>
          <div class="edit">
-            <button type="button" class="btn btn-outline-secondary btn-block">
-            <i class="fas fa-user-cog"></i>
-　　　　　　</button>
-　　　　　　<h2>
-　　　　　　  New book
-　　　　　　</h2>
-　　　　　　<td class="form">
-　　　　　　<%= form_with model:@user, local:true do |f| %>
-　　　　　　<p4>Title</p4><br>
-　　　　　　  <%= f.text_field :Title %><br>
-　　　　　　<p4>Opinion</p4><br>
-　　　　　　  <%= f.text_field :Opinion %>
-　　　　　　  <%= link_to "Create Book", books_path, class: "btn btn-lg btn-success", method: :get %>
-　　　　　　<% end %>
-　　　　　　</td>
-　　　　　　</div>
+          <a class="btn btn-outline-secondary btn-block fas fa-user-cog" href="/users/:id/edit">
+          </a>
          </div>
-         <div class="col-lg-4">
+      </button>
+      <h2>
+        New book
+      </h2>
+      <td class="form">
+      <%= form_with model:@user, local:true do |f| %>
+      <p4>Title</p4><br>
+        <%= f.text_field :Title %><br>
+      <p4>Opinion</p4><br>
+        <%= f.text_area :Opinion %><br>
+        <P></P>
+     <%= button_to "Create book", {controller: 'users', action: 'new'}, {method: :post, class: "btn btn-lg btn-success"} %>
+      <% end %>
+      </td>
+      </div>
+         </div>
+         <div class="col-lg-8">
            <h2>Books</h2>
            <table class="table">
-           
+            <thead>
+             <th>
+              Title
+             </th>
+             <th>
+              Opinion
+             </th>
+            </thead>
+            <tbody>
+              <tr>
+               <td>
+               </td>
+               <td>
+               </td>
+              </tr>
+            </tbody>
+           </table>
            </table>
          </div>
       </div>
