@@ -14,7 +14,7 @@
     <% end %>
     <div class="container">
      <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-4">
          <h2>
            User info
          </h2>
@@ -34,7 +34,6 @@
                    <%= current_user.introduction %>
                  </th>
                  <th>
-
                  </th>
             </tbody>
          </table>
@@ -46,34 +45,38 @@
         New book
       </h2>
       <td class="form">
-      <%= form_with model:@book, local:true do |f| %>
+       <% if @book.errors.any? %>
+        <%= @book.errors.count %>
+        <% @book.errors.full_messages.each do |message| %>
+         <%= message %>
+        <% end %>
+       <% end %>
+       <%= form_with model: @book, local:true do |f| %>
       <p4>Title</p4><br>
         <%= f.text_field :title %><br>
       <p4>Opinion</p4><br>
         <%= f.text_area :body %>
-        <%= button_to "Create book", {controller: 'books', action: 'new'}, {method: :post, class: "btn btn-lg btn-success"} %>
+        <%= f.submit "Create book", class: "btn btn-success" %>
       <% end %>
       </td>
       </div>
-         </div>
-         <div class="col-lg-4">
+         <div class="col-lg-8">
            <h2>Book detail</h2>
            <table class="table">
             <thead>
              <th>
-              Title
              </th>
              <th>
-              Opinion
              </th>
             </thead>
             <tbody>
               <% @books.each do |book| %>
               <tr>
                  <td>
+                 <%= image_tag 'bou.jpg', class: 'icon' %>
                  </td>
                  <td>
-                 <%= book.title %>
+                  <%= book.title %>
                  </td>
                  <td>
                  <%= book.body %>
@@ -83,6 +86,7 @@
             </tbody>
            </table>
          </div>
+       </div>
       </div>
     </div>
     </html>

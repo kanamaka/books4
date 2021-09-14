@@ -7,7 +7,7 @@
 </head>
 <p></p>
 <h2 style="text-align:center">User info</h2>
-<%= form_with model: @users, local:true do |f| %>
+<%= form_with model: @user, local:true do |f| %>
 <td class="edit_form">
  <label for="inputname">Name</label><br>
  <%= f.text_field :name %><br>
@@ -18,7 +18,7 @@
   <%= f.text_area :introduction %><br>
  </td>
  <td class="action">
-  <input type="submit" name="commit" value="Update User" class="btn btn-secondary" />
+  <%= f.submit "Update User", class: "btn btn-secondary" %>
  </td>
 <% end %>
  </html>

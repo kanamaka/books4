@@ -24,42 +24,43 @@
                  <tr></tr>
                  <th>
                    name
+                   <%= current_user.name %>
                  </th>
                  <th>
                  </th>
                  <tr></tr>
                  <th>
                    introduction
+                   <%= current_user.introduction %>
                  </th>
                  <th>
-
                  </th>
             </tbody>
          </table>
          <div class="edit">
-          <a class="btn btn-outline-secondary btn-block fas fa-user-cog" href="/users/:id/edit">
-          </a>
+          <%= link_to " ", edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
          </div>
       </button>
       <h2>
         New book
       </h2>
       <td class="form">
-      <%= form_with model:@user, local:true do |f| %>
+      <%= form_with model: @book, local:true do |f| %>
       <p4>Title</p4><br>
-        <%= f.text_field :Title %><br>
+        <%= f.text_field :title %><br>
       <p4>Opinion</p4><br>
-        <%= f.text_area :Opinion %><br>
+        <%= f.text_area :body %><br>
         <P></P>
-     <%= button_to "Create book", {controller: 'users', action: 'new'}, {method: :post, class: "btn btn-lg btn-success"} %>
+      <%= f.submit "Create book", class: "btn btn-success" %>
       <% end %>
       </td>
       </div>
-         </div>
          <div class="col-lg-8">
            <h2>Books</h2>
            <table class="table">
             <thead>
+             <th>
+             </th>
              <th>
               Title
              </th>
@@ -70,14 +71,18 @@
             <tbody>
               <tr>
                <td>
+                <%= image_tag 'bou.jpg', class: 'icon' %>
                </td>
                <td>
+               </td>
+               <td>
+                <%= current_user.introduction %>
                </td>
               </tr>
             </tbody>
            </table>
            </table>
-         </div>
+        </div>
       </div>
-    </div>
+      </div>
     </html>
