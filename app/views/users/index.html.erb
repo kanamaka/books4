@@ -72,12 +72,14 @@
              <% @user.each do |user| %>
               <tr>
                <td>
-                <%= image_tag 'bou.jpg', class: 'icon' %>
+                <%= image_tag ' ', class: 'icon' %>
                 <%= user.profile_image_id %>
                </td>
                <td>
+                <% if user_signed_in?  %>
                 <%= user.name %>
                </td>
+                <%= user.introduction %>
                <td>
                 <%= link_to "Show", user_path(current_user.id) %>
                </td>

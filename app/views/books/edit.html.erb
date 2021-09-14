@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8">
+ <link rel="stylesheet" href="bookers2/app/assets/stylesheets/books.scss">
+ <script src="https://kit.fontawesome.com/34c9407723.js" crossorigin="anonymous"></script>
+ </head>
+ <h1 class="edittitle">
+  Editing Book
+ </h1>
+ <%= form_with model: @book, local:true do |f| %>
+ <td class="editbookform">
+  <tr>
+  Title
+  <br>
+  <%= f.text_field :title %>
+  </tr>
+  <br>
+  <label for="inputbody">Opinion</label><br>
+  <%= f.text_area :body %><br>
+   <td class="action">
+    <p></p>
+  <%= f.submit "Update Book", class: "btn btn-success" %>
+ </td>
+ <% end %>
+ </td>
+</html>

@@ -12,6 +12,13 @@
        <%= flash[:notice] %>
      </p>
     <% end %>
+    <% if @book.errors.any? %>
+        <td class="miss">
+        <%= @book.errors.count %>errors prohibited this obj from being saved:
+        </td>
+         <li class="message">Title can't be blank</li>
+         <li class="message">Body can't be blank</li>
+       <% end %>
     <div class="container">
      <div class="row">
       <div class="col-lg-4">
@@ -38,19 +45,12 @@
             </tbody>
          </table>
          <div class="edit">
-          <a class="btn btn-outline-secondary btn-block fas fa-user-cog" href="/users/:id/edit">
-          </a>
+          <%= link_to " ", edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
          </div>
       <h2>
         New book
       </h2>
       <td class="form">
-       <% if @book.errors.any? %>
-        <%= @book.errors.count %>
-        <% @book.errors.full_messages.each do |message| %>
-         <%= message %>
-        <% end %>
-       <% end %>
        <%= form_with model: @book, local:true do |f| %>
       <p4>Title</p4><br>
         <%= f.text_field :title %><br>
@@ -76,7 +76,7 @@
                  <%= image_tag 'bou.jpg', class: 'icon' %>
                  </td>
                  <td>
-                  <%= book.title %>
+                  <%= link_to book.title,book_path(current_user.id) %>
                  </td>
                  <td>
                  <%= book.body %>

@@ -12,6 +12,7 @@
        <%= flash[:notice] %>
      </p>
     <% end %>
+
     <div class="container">
      <div class="row">
       <div class="col-lg-4">
@@ -36,9 +37,8 @@
             </tbody>
          </table>
          <div class="edit">
-            <button type="button" class="btn btn-outline-secondary btn-block" >
-            <i class="fas fa-user-cog"></i>
-      </button>
+          <%= link_to " ", edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
+         </div>
       <h2>
         New book
       </h2>
@@ -58,18 +58,33 @@
       <% end %>
       </td>
       </div>
-         </div>
          <div class="col-lg-8">
            <h2>Book detail</h2>
            <table class="table">
             <% @books.each do |book| %>
             <thead>
              <tr>
+              <td>
+               <%= image_tag 'bou.jpg', class: 'icon' %>
+              </td>
+              <td>
+               <%= link_to "", edit_book_path(current_user.id) %>
+              </td>
+              <td>
+               <%= book.body %>
+              </td>
+              <td>
+               <%= link_to "Edit", edit_book_path(current_user.id), class: "btn btn-success btn-block" %>
+              </td>
+              <td>
+               <%= link_to "destroy", book_path(current_user.id), method: :delete, class: "btn btn-denger btn-block" %>
+              </td>
              </tr>
             </thead>
             <tbody>
             </tbody>
             <% end %>
+        　 </table>
          </div>
       </div>
     </div>
