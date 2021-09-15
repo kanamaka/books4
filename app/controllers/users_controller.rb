@@ -18,11 +18,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @book = Book.new
-    @books = Book.new
-    @user = User.all
-    @users = User.new
     @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
+    @users = User.new
+
   end
 
   def destroy
@@ -32,11 +32,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    flash[:notice] = "You have updated user successfully."
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if redirect_to user_path(@user.id)
+    if @user.update(user_params)
+     redirect_to user_path(@user.id)
     else
-      render :edit
+     render :edit
     end
   end
   def edit
@@ -44,6 +45,6 @@ class UsersController < ApplicationController
   end
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image_id)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 end

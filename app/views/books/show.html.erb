@@ -7,19 +7,18 @@
 </head>
 <main class="user">
      <p>
-     <% if flash[:notice] %>
+      <% if flash[:notice] %>
      <p id="notice">
        <%= flash[:notice] %>
      </p>
-    <% end %>
-
+     <% end %>
     <div class="container">
      <div class="row">
       <div class="col-lg-4">
          <h2>
            User info
          </h2>
-         <div class="userimg" src="assets/images/bou.jpg"></div>
+           <%= attachment_image_tag(@user,:profile_image,:fill,80,80,fallback: "bou.jpg") %>
          <table class="table">
             <tbody>
                  <tr></tr>
@@ -49,7 +48,7 @@
         <%= message %>
        <% end %>
       <% end %>
-      <%= form_with model:@book, local:true do |f| %>
+      <%= form_with model:@book_new, local:true do |f| %>
       <p4>Title</p4><br>
         <%= f.text_field :title %><br>
       <p4>Opinion</p4><br>
@@ -61,29 +60,27 @@
          <div class="col-lg-8">
            <h2>Book detail</h2>
            <table class="table">
-            <% @books.each do |book| %>
             <thead>
              <tr>
               <td>
                <%= image_tag 'bou.jpg', class: 'icon' %>
               </td>
               <td>
-               <%= link_to "", edit_book_path(current_user.id) %>
+               <%= @book.title %>
               </td>
               <td>
-               <%= book.body %>
+               <%= @book.body %>
               </td>
               <td>
-               <%= link_to "Edit", edit_book_path(current_user.id), class: "btn btn-success btn-block" %>
+               <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success btn-block" %>
               </td>
               <td>
-               <%= link_to "destroy", book_path(current_user.id), method: :delete, class: "btn btn-denger btn-block" %>
+               <%= link_to "destroy", book_path(@book.id), method: :delete, class: "btn btn-danger btn-block" %>
               </td>
              </tr>
             </thead>
             <tbody>
             </tbody>
-            <% end %>
         　 </table>
          </div>
       </div>
