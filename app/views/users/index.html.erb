@@ -1,22 +1,30 @@
 <head>
  <meta charset="utf-8">
- <link rel="stylesheet" href="bookers2/app/assets/stylesheets/users.scss">
+ <%= stylesheet_link_tag  "application", media: "all", "data-turbolinks-track": "reload" %>
  <script src="https://kit.fontawesome.com/34c9407723.js" crossorigin="anonymous"></script>
 </head>
 <main class="user">
-     <p>
-     <% if flash[:notice] %>
-     <p id="notice">
-       <%= flash[:notice] %>
-     </p>
-    <% end %>
     <div class="container">
      <div class="row">
-      <div class="col-lg-4">
+      <div class="col-md-3">
+       <div class="text-danger">
+         <% if @user.errors.any? %>
+         <%= @user.errors.count %>
+         errors prohibited this obj from being saved:
+         <% @user.errors.full_messages.each do |message| %>
+          <li>
+           <%= message %>
+          </li>
+         <% end %>
+         <% end %>
+        </div>
+       <div class="text-success">
+        <%= flash[:notice] %>
+       </div>
          <h2>
            User info
          </h2>
-          <%= attachment_image_tag(@users,:profile_image,:fill,80,80,fallback: " ") %>
+           <%= attachment_image_tag @user,:profile_image,fallback: "bou.jpg", size: "100x100" %>
          <table class="table">
             <tbody>
              <tr></tr>
@@ -41,17 +49,17 @@
 　　　　　　<h2>
 　　　　　　  New book
 　　　　　　</h2>
-　　　　　　<td class="form">
+　　　　　　<td class="form-control">
 　　　　　　<%= form_with model:@book, local:true do |f| %>
 　　　　　　<p4>Title</p4><br>
 　　　　　　  <%= f.text_field :title %><br>
 　　　　　　<p4>Opinion</p4><br>
 　　　　　　  <%= f.text_area :body %>
-　　　　　　<%= f.submit "Create book", class: "btn btn-success" %>
+　　　　　　<%= f.submit "Create Book", class: "btn btn-success" %>
 　　　　　　<% end %>
 　　　　　　</td>
 　　　</div>
-         <div class="col-lg-8">
+         <div class="col-md-8 offset-md-1">
            <h2>
              Users
            </h2>
@@ -67,20 +75,22 @@
              </th>
             </thead>
             <tbody>
-             <% @user.each do |user| %>
+             <% @users.each do |user| %>
               <tr>
                <td>
-                <%= image_tag 'bou.jpg', class: 'icon' %>
+                <%= attachment_image_tag @user,:profile_image,fallback: "bou.jpg", size: "100x100" %>
                </td>
                <td>
                 <%= user.name %>
                </td>
-                <%= user.introduction %>
+               </td>
                <td>
-                <%= link_to "Show", user_path(current_user.id) %>
+               </td>
+               <td>
+                 <%= link_to "Show", user_path(current_user.id) %>
                </td>
               </tr>
-                <% end %>
+              <% end %>
             </tbody>
          </div>
       </div>

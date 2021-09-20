@@ -2,19 +2,24 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    flash[:notice] = "Welcome! You have signed up successfully."
   end
 
   def create
-   flash[:notice] = "successfully"
+   flash[:notice] = "You have created book successfully."
    @user = Users.new(users_params)
    @user.users_id = current_users.id
-   @user.save
-   redirect_to books_path
+   if @user.save
+    redirect_to books_path
+   else
+     render :create
+   end
   end
 
   def index
     @book = Book.new
-    @user = User.all
+    @users = User.all
+    @user = current_user
   end
 
   def show
@@ -26,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Signed out successfully."
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
