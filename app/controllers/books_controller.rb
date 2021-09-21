@@ -24,7 +24,7 @@ class BooksController < ApplicationController
     @newbook = Book.new
     @book = Book.find(params[:id])
     @users_id = params[:id]
-    @user = current_user
+    @user = @book.user
   end
 
   def destroy
@@ -58,4 +58,6 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+
+
 end

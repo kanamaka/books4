@@ -1,20 +1,20 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate_user!
   def new
     @user = User.new
     flash[:notice] = "Welcome! You have signed up successfully."
   end
 
-  def create
-   flash[:notice] = "You have created book successfully."
-   @user = Users.new(users_params)
-   @user.users_id = current_users.id
+   def create
+    flash[:notice] = "You have created book successfully."
+    @user = Users.new(users_params)
+    @user.users_id = current_users.id
    if @user.save
     redirect_to books_path
    else
      render :create
    end
-  end
+   end
 
   def index
     @book = Book.new
@@ -48,8 +48,13 @@ class UsersController < ApplicationController
   end
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+    redirect_to user_path(current_user.id)
+    end
   end
+
   private
+
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end

@@ -1,8 +1,3 @@
-<head>
- <meta charset="utf-8">
- <%= stylesheet_link_tag  "application", media: "all", "data-turbolinks-track": "reload" %>
- <script src="https://kit.fontawesome.com/34c9407723.js" crossorigin="anonymous"></script>
-</head>
 <main class="user">
     <div class="container">
      <div class="row">
@@ -51,14 +46,22 @@
 　　　　　　</h2>
 　　　　　　<td class="form-control">
 　　　　　　<%= form_with model:@book, local:true do |f| %>
-　　　　　　<p4>Title</p4><br>
-　　　　　　  <%= f.text_field :title %><br>
-　　　　　　<p4>Opinion</p4><br>
+　　　　　　<div class="form_title">
+　　　　　　<p4>
+　　　　　　 Title
+　　　　　　</p4>
+　　　　　　  <%= f.text_field :title %>
+　　　　　　</div><br>
+　　　　　　<div class="form_body">
+　　　　　　<p4>
+　　　　　　 Opinion
+　　　　　　</p4><br>
 　　　　　　  <%= f.text_area :body %>
+　　　　　　</div>
 　　　　　　<%= f.submit "Create Book", class: "btn btn-success" %>
 　　　　　　<% end %>
 　　　　　　</td>
-　　　</div>
+　　　   </div>
          <div class="col-md-8 offset-md-1">
            <h2>
              Users
@@ -87,7 +90,7 @@
                <td>
                </td>
                <td>
-                 <%= link_to "Show", user_path(current_user.id) %>
+                 <%= link_to "Show", user_path(user.id) %>
                </td>
               </tr>
               <% end %>
